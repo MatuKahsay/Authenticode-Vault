@@ -1,4 +1,4 @@
-# Security-System
+# Authenticode Vault
 This Security System application is a simple console-based program designed to manage user authentication, including registration, login, and password changes. It leverages a combination of C++ standard libraries and the JSON for Modern C++ library for user data management and storage. This document provides a comprehensive guide to help users understand and navigate the application.
 Features
 
