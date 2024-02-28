@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <unordered_map>
+#include <regex>
 #include <json.hpp> // for json parsing and serialization
 
 using json = nlohmann::json;
@@ -14,16 +15,54 @@ string hashPassword(const string& password) {
     return to_string(hasher(password));
 }
 
+bool isValidUsername(const string& username) {
+    // Implement your own rules for username validation
+    return username.length() >= 4; // Example rule: at least 4 characters
+}
+
+bool isValidPassword(const string& password) {
+    // Implement your own rules for password validation
+    if (password.length() < 8) {
+        return false; // Password too short
+    }
+    regex hasNumber("\\d");
+    regex hasLowercase("[a-z]");
+    regex hasUppercase("[A-Z]");
+    regex hasSpecialChar("[^a-zA-Z\\d]");
+
+    if (!regex_search(password, hasNumber) ||
+        !regex_search(password, hasLowercase) ||
+        !regex_search(password, hasUppercase) ||
+        !regex_search(password, hasSpecialChar)) {
+        return false; // Password does not meet complexity requirements
+    }
+
+    return true; // Password meets all requirements
+}
+
 void registerUser(unordered_map<string, string>& users) {
     string username, password;
     cout << "Please enter a new username: ";
     cin >> username;
+    
+    if (!isValidUsername(username)) {
+        cout << "Username does not meet the requirements." << endl;
+        return;
+    }
+    
     if (users.find(username) != users.end()) {
         cout << "This username is already taken. Please choose a different one." << endl;
         return;
     }
+
     cout << "Please enter a new password: ";
     cin >> password;
+
+    if (!isValidPassword(password)) {
+        cout << "Password does not meet the requirements." << endl;
+        return;
+    }
+
     users[username] = hashPassword(password);
     cout << "Registration successful!" << endl;
 }
@@ -129,4 +168,4 @@ int main() {
     return 0;
 }
 
-// Define the functions declared earlier
+
