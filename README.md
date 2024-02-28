@@ -16,17 +16,16 @@ To compile and run this application, you will need:
 
 Compilation and Execution
 
-    Compile the Program: Use your C++ compiler to compile the application. The command may vary depending on your compiler and setup. An example command for GCC is:
+Compile the Program: Use your C++ compiler to compile the application. The command may vary depending on your compiler and setup. An example command for GCC is:
 
-bash
 
-g++ -std=c++11 -o SecuritySystem SecuritySystem.cpp
+    g++ -std=c++11 -o SecuritySystem SecuritySystem.cpp
 
-    Run the Program: After compilation, you can run the program using:
+Run the Program: After compilation, you can run the program using:
 
-bash
 
-./SecuritySystem
+
+    ./SecuritySystem
 
 Usage Instructions
 
